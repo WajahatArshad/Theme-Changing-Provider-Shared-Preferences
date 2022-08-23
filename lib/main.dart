@@ -1,16 +1,15 @@
 // import 'package:chat_application/Pages/complete_profile.dart';
-import 'package:chat_application/Pages/login_page.dart';
-
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 // Future<void> main() async {
 //   WidgetsFlutterBinding.ensureInitialized();
 //   await Firebase.initializeApp();
 //   runApp(const MyApp());
 // }
+
+import 'package:chat_application/Pages/home_page.dart';
+import 'package:chat_application/Pages/theme_provider.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -20,32 +19,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
-      themeMode: ThemeMode.light,
-      home: const HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text('Hello World'),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => ThemeProvider()..initilize(),
+        ),
+      ],
+      child: Consumer<ThemeProvider>(
+        builder: ((context, provider, child) {
+          return MaterialApp(
+            theme: ThemeData.light(),
+            darkTheme: ThemeData.dark(),
+            themeMode: provider.themeMode,
+            home: const HomePage(),
+          );
+        }),
       ),
     );
   }
 }
+
 
 
 // class HomePage extends StatefulWidget {

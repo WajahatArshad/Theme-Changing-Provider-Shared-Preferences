@@ -1,7 +1,8 @@
 // ignore_for_file: avoid_print
 
-import 'package:chat_application/Models/user_model.dart';
-import 'package:chat_application/Pages/sign_up._page.dart';
+import 'package:chat_application/Old%20Project/Models/user_model.dart';
+import 'package:chat_application/Old%20Project/Pages/sign_up._page.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
